@@ -2,8 +2,8 @@
 
 /**
  * @package WordPress
- * @subpackage Jackpine
- * @since Jackpine 0.1.0
+ * @subpackage jackpine
+ * @since jackpine 0.1.0
  */
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -17,7 +17,7 @@ $timber = new Timber();
 
 Timber::$dirname = 'templates';
 
-class Jackpine extends Site
+class jackpine extends Site
 {
     public $enqueue;
 
@@ -92,4 +92,4 @@ class Jackpine extends Site
     }
 }
 
-new Jackpine();
+new jackpine();
