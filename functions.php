@@ -42,6 +42,7 @@ class jackpine extends Site
     {
         $context['site'] = $this;
         $context['menu'] = new Menu();
+        $context['top_menu'] = new Menu();
 
         return $context;
     }
