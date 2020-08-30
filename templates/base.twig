@@ -10,13 +10,13 @@
 
 	</head>
 
-	<body class="{{body_class}}" data-template="base.twig">
+	<body class="{{body_class}} bg-gray-300" data-template="base.twig">
 
     {% include 'header.twig' %}
 
     <main id="main">
 
-        <div id="content">
+        <div id="content" class="mx-auto w-10/12 lg:w-3/4 py-10">
 
             {% block content %}
                 Sorry, no content
