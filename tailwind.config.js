@@ -16,7 +16,10 @@ module.exports = {
                     '400': '#cfc9c5',
                     '100': '#f8f4f1',
                 },
-            }
+            },
+            borderWidth: {
+                '.5': '0.5px',
+            },
           }
     },
 };

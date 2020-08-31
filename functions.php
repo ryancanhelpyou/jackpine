@@ -43,6 +43,8 @@ class jackpine extends Site
         $context['site'] = $this;
         $context['menu'] = new Menu();
         $context['top_menu'] = new Menu();
+        $custom_logo_url = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
+        $context['custom_logo_url'] = $custom_logo_url;
 
         return $context;
     }
@@ -68,6 +70,9 @@ class jackpine extends Site
         add_theme_support('post-thumbnails');
         add_theme_support('title-tag');
         add_theme_support('align-wide');
+        add_theme_support('custom-logo');
+        add_theme_support('custom-background');
+        add_theme_support('customize-selective-refresh-widgets');
 
         /** Removing the Website field from WordPress comments is a proven way to reduce spam */
         add_filter('comment_form_default_fields', 'remove_website_field');
