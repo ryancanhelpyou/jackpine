@@ -67,6 +67,7 @@ class jackpine extends Site
         add_theme_support('menus');
         add_theme_support('post-thumbnails');
         add_theme_support('title-tag');
+        add_theme_support('align-wide');
 
         /** Removing the Website field from WordPress comments is a proven way to reduce spam */
         add_filter('comment_form_default_fields', 'remove_website_field');
