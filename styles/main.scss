@@ -2,6 +2,9 @@
 @import 'defaults/lists';
 @import 'defaults/typography';
 
+// Import components
+@import 'components/nav';
+
 // Import WooCommerce styles
 @import 'woocommerce/woocommerce';
 
