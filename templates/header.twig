@@ -8,14 +8,15 @@
         </a>
         </div>
 
-        <a href="#" title="menu">
-            <button class="bg-transparent focus:bg-orange text-orange focus:text-gray-100 border-2 border-orange rounded-full py-3 px-8 inline-flex items-center transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-outline">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 mr-1">
-                <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-                </svg>
-                <span>menu</span>
-            </button>
-        </a>
+        <button
+        @click="isOpen = !isOpen"
+        type="button"
+        class="bg-transparent focus:bg-orange text-orange focus:text-gray-100 border-2 border-orange rounded-full py-3 px-8 inline-flex items-center transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 mr-1">
+            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+            </svg>
+            <span>menu</span>
+        </button>
 
         <div>
         <a href="https://www.google.com/maps/place/10564+5th+Ave+NE+%23203,+Seattle,+WA+98125/@47.706761,-122.322746,16z/data=!4m5!3m4!1s0x549011565ad2913d:0x6c9be49d7f0f372c!8m2!3d47.7067609!4d-122.3227461?hl=en" title="map">
@@ -39,7 +40,7 @@
     </nav> #}
 
 {# mobile expanded #}
-    <nav class="sm:hidden">
+    {# <nav class="sm:hidden">
         <div class="flex w-10/12 mx-auto items-end mt-6">
             <div class="flex-1">
             <a href="{{ site.url|e('esc_url') }}" title="Home" rel="home">
@@ -99,20 +100,119 @@
             <li><a href="#">covid-19</a></li>
             <li><a href="#">contact</a></li>
         </ul>
+    </nav> #}
+
+{# desktop #}
+<nav id="nav-main" class="nav-main" role="navigation">
+    <div class="flex items-end justify-between p-6 w-11/12 mx-auto">
+        <div class="block w-1/5">
+            <a href="{{ site.url|e('esc_url') }}" title="Home" rel="home">
+            <picture>
+                <source srcset="{{ custom_logo_url|towebp }}" type="image/webp">
+                <source srcset="{{ custom_logo_url|tojpg }}" type="image/jpeg">
+                <img alt="logo" class="w-full transition duration-500 ease-in-out transform hover:scale-105" src="{{ custom_logo_url|resize(400, 300) }}" srcset="{{ custom_logo_url|resize(200, 150)|retina(1) }} 1x,
+                    {{ custom_logo_url|resize(800, 600)|retina(2) }}  2x,
+                    {{ custom_logo_url|resize(1600, 1200)|retina(3) }}  3x,
+                    {{ custom_logo_url|resize(2400, 2400)|retina(4) }}  4x">
+            </picture>
+            </a>
+        </div>
+        <div class="bg-gray-300 text-gray-800 font-light text-xl flex flex-row">
+            {# <a href="" class="mr-5 hover:text-orange">about</a>
+            <a href="" class="mr-5 hover:text-orange">covid-19</a>
+            <a href="" class="mr-5 hover:text-orange">services</a>
+            <a href="" class="mr-5 hover:text-orange">products</a>
+            <a href="" class="mr-5 hover:text-orange">for patients</a>
+            <a href="" class=" hover:text-orange">contact</a> #}
+
+                {% if items|default(top_menu.items) %}
+                    {% for item in items|default(top_menu.items) %}
+                        {% if item.children %}
+                            <div x-data="{ hover: false }" class="relative">
+                                <a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="ml-6 hover:text-orange flex items-center" @mouseenter="{hover=true}" @mouseleave="{hover=false}">{{ item.name }}</a>
+                                <ul id="menu-item-list-{{ item.id }}" class="absolute ml-4 p-2 bg-white border-gray-400 border-.5 flex flex-col whitespace-no-wrap" x-show="hover" @mouseenter="{hover=true}" @mouseleave="{hover=false}">
+                                    {% for child in item.children %}
+                                        <li id="menu-item-child-{{ child.id }}" class="p-2">
+                                            <a href="{{ child.link }}" class="hover:text-orange">{{ child.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {%  else %}
+                            <a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="ml-6 hover:text-orange">{{ item.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+        </div>
+        <div class="bg-gray-300 flex items-center justify-end">
+            <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="w-8 text-gray-400 hover:text-orange mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg></a>
+            <button class="bg-transparent hover:bg-orange text-orange hover:text-gray-100 py-2 px-4 border border-orange hover:border-transparent rounded">schedule appointment</button
+        </div>
+    </div>
+    <div class="absolute top-0 right-0">
+        {# <a href="">locations + hours</a>
+        <a href="">store</a>
+        <a href="">(222) 222-2222</a> #}
+        <img src="https://wordpress-449918-1455950.cloudwaysapps.com/wp-content/uploads/secondary-nav.png" class="mr-24 h-12">
+    </div>
+</nav>
+
+{# Tailwind  demo #}
+    <nav class="flex items-center justify-between">
+        {# logo #}
+        <div>
+        </div>
+        {# nav #}
+        <div>
+        </div>
+        {# utility #}
+        <div>
+        </div>
     </nav>
 
 
+    {# <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+            <span class="font-semibold text-xl tracking-tight">Tailwind CSS</span>
+        </div>
+        <div class="block lg:hidden">
+            <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+            </button>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <div class="text-sm lg:flex-grow">
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                Docs
+            </a>
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                Examples
+            </a>
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                Blog
+            </a>
+            </div>
+            <div>
+            <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <img class="h-8" src="/img/logo-inverted.svg" alt="Workcation">
+    </div>
+    <div>
+        <button type="button" class="block text-gray-500 hover:text-white focus:text-white focus:outline-none">
+        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+        </svg>
+        </button>
+    </div> #}
 
-{# desktop #}
-    {# <a href="{{ site.url|e('esc_url') }}" title="Home" rel="home">
-    <picture>
-        <source srcset="{{ custom_logo_url|towebp }}" type="image/webp">
-        <source srcset="{{ custom_logo_url|tojpg }}" type="image/jpeg">
-        <img alt="logo" class="w-2/5" src="{{ custom_logo_url|resize(400, 300) }}" srcset="{{ custom_logo_url|resize(200, 150)|retina(1) }} 1x,
-            {{ custom_logo_url|resize(800, 600)|retina(2) }}  2x,
-            {{ custom_logo_url|resize(1600, 1200)|retina(3) }}  3x,
-            {{ custom_logo_url|resize(2400, 2400)|retina(4) }}  4x">
-    </picture>
-    </a> #}
+
+
+
 
 </header>
