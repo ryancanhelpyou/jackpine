@@ -48,8 +48,7 @@ class jackpine extends Site
         $context['menu_mobile'] = new Menu( 'mobile' );
         $custom_logo_url = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
         $context['custom_logo_url'] = $custom_logo_url;
-
-
+        $context['is_front_page'] = is_front_page();
 
         return $context;
     }

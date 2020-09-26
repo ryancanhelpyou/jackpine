@@ -35,7 +35,7 @@
             </a>
             </div>
             {# mobile expanded #}
-            <div x-cloak x-show.transition.duration.500ms.origin.top="open" @click.away="open = false" @keydown.escape.window="open = false" class="fixed inset-0 w-full h-full bg-gray-100 z-20 border-t-4 border-b-8 border-gray-400">
+            <div x-cloak x-show.transition.duration.800ms.origin.top="open" @click.away="open = false" @keydown.escape.window="open = false" class="fixed inset-0 w-full h-full bg-gray-100 z-20 border-t-4 border-b-8 border-gray-400">
                 <div class="flex w-10/12 mx-auto items-end mt-6">
                     <div class="flex-1">
                         <a href="{{ site.url|e('esc_url') }}" title="Home" rel="home">
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="w-10/12 mx-auto mt-8 object-center">
-                    <a href="/schedule-online/">
+                    <a href="#">
                     <button class="bg-orange text-gray-100 font-light py-2 px-4 rounded-full inline-flex items-center w-full mb-3 transition duration-500 ease-in-out transform hover:scale-105">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 mr-2">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -87,34 +87,18 @@
                 </div>
 
                 <ul class="mobile-primary-nav">
-                    {# <li><a href="/about-our-hearing-center/">about</a></li>
+                    <li><a href="/about-our-hearing-center/">about</a></li>
                     <li><a href="/novel-coronavirus-covid-19/">covid-19</a></li>
                     <li><a href="/audiology-and-hearing-aid-services/">services</a></li>
                     <li><a href="/hearing-aids/">products</a></li>
                     <li><a href="/hearing-resources/">for patients</a></li>
-                    <li><a href="/contact-us/">contact</a></li> #}
-                     {% if items|default(menu_primary.items) %}
-                        {% for item in items|default(menu_primary.items) %}
-                            {# {% if item.children %}
-                                <div x-data="{ hover: false }" class="relative">
-                                    <a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="ml-6 hover:text-orange flex items-center" @mouseenter="{hover=true}" @mouseleave="{hover=false}">{{ item.name }}</a>
-                                    <ul id="menu-item-list-{{ item.id }}" class="absolute ml-4 p-2 bg-white border-gray-400 border-.5 flex flex-col whitespace-no-wrap" x-show="hover" @mouseenter="{hover=true}" @mouseleave="{hover=false}">
-                                        {% for child in item.children %}
-                                            <li id="menu-item-child-{{ child.id }}" class="p-2">
-                                                <a href="{{ child.link }}" class="hover:text-orange">{{ child.title }}</a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            {%  else %} #}
-                                <li><a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="ml-6 hover:text-orange">{{ item.name }}</a></li>
-                            {# {% endif %} #}
-                        {% endfor %}
-                    {% endif %}
+                    <li><a href="/contact-us/">contact</a></li>
                 </ul>
 
                 <div class="w-10/12 mx-auto mt-10">
                     <input class="appearance-none border rounded-full w-full py-2 px-4 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" id="search" type="text" placeholder="search">
+                    {# <svg xmlns="http://www.w3.org/2000/svg" class="w-8 text-gray-400 hover:text-orange mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> #}
 
                     <div class="flex justify-between items-center mt-6">
                         <div class="w-1/2">
@@ -157,9 +141,7 @@
                     </svg>(206) 367-1345
                 </a>
             </div>
-            {# primary nav #}
             <div class="flex items-end justify-between py-6">
-                {# logo #}
                 <div class="block w-1/5">
                     <a href="{{ site.url|e('esc_url') }}" title="Home" rel="home">
                     <picture>
@@ -172,10 +154,9 @@
                     </picture>
                     </a>
                 </div>
-                {# menu #}
                 <div class="bg-gray-300 text-gray-800 font-light text-xl flex flex-row">
-                    {% if items|default(menu_primary.items) %}
-                        {% for item in items|default(menu_primary.items) %}
+                    {% if items|default(top_menu.items) %}
+                        {% for item in items|default(top_menu.items) %}
                             {% if item.children %}
                                 <div x-data="{ hover: false }" class="relative">
                                     <a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="ml-6 hover:text-orange flex items-center" @mouseenter="{hover=true}" @mouseleave="{hover=false}">{{ item.name }}</a>
@@ -193,12 +174,11 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                {# utility menu #}
                 <div class="bg-gray-300 flex items-center justify-end">
                     <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-8 text-gray-400 hover:text-orange mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg></a>
-                    <a href="/schedule-online/"><button class="bg-transparent hover:bg-orange text-orange hover:text-gray-100 py-2 px-4 border border-orange hover:border-transparent rounded" type="button">schedule appointment</button></a>
+                    <button class="bg-transparent hover:bg-orange text-orange hover:text-gray-100 py-2 px-4 border border-orange hover:border-transparent rounded" type="button">schedule appointment</button
                 </div>
             </div>
         </div>
