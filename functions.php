@@ -41,10 +41,15 @@ class jackpine extends Site
     public function add_to_context($context)
     {
         $context['site'] = $this;
-        $context['menu'] = new Menu();
-        $context['top_menu'] = new Menu();
+        $context['menu_primary'] = new Menu( 'primary' );
+        $context['menu_secondary'] = new Menu( 'secondary' );
+        $context['menu_social'] = new Menu( 'social' );
+        $context['menu_footer'] = new Menu( 'footer' );
+        $context['menu_mobile'] = new Menu( 'mobile' );
         $custom_logo_url = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
         $context['custom_logo_url'] = $custom_logo_url;
+
+
 
         return $context;
     }
@@ -60,6 +65,7 @@ class jackpine extends Site
         add_theme_support(
             'html5',
             [
+                'search-form',
                 'comment-form',
                 'comment-list',
                 'gallery',
@@ -73,6 +79,24 @@ class jackpine extends Site
         add_theme_support('custom-logo');
         add_theme_support('custom-background');
         add_theme_support('customize-selective-refresh-widgets');
+        // Add theme support for Custom Header
+        $header_args = array(
+            'default-image'          => '',
+            'width'                  => 1600,
+            'height'                 => 500,
+            'flex-width'             => true,
+            'flex-height'            => true,
+            'uploads'                => true,
+            'random-default'         => true,
+            'header-text'            => true,
+            'default-text-color'     => '#efefef',
+            'wp-head-callback'       => '',
+            'admin-head-callback'    => '',
+            'admin-preview-callback' => '',
+            'video'                  => true,
+            'video-active-callback'  => '',
+        );
+        add_theme_support( 'custom-header', $header_args );
 
         /** Removing the Website field from WordPress comments is a proven way to reduce spam */
         add_filter('comment_form_default_fields', 'remove_website_field');
@@ -100,3 +124,22 @@ class jackpine extends Site
 }
 
 new jackpine();
+
+
+
+// Register Navigation Menus
+if ( ! function_exists( 'custom_navigation_menus' ) ) {
+function custom_navigation_menus() {
+
+    $locations = array(
+        'primary' => __( 'Primary Nav', 'rchy' ),
+        'secondary' => __( 'Secondary Nav', 'rchy' ),
+        'social' => __( 'Social Media Nav', 'rchy' ),
+        'footer' => __( 'Footer Nav', 'rchy' ),
+        'mobile' => __( 'Mobile Nav', 'rchy' ),
+    );
+    register_nav_menus( $locations );
+
+    }
+add_action( 'init', 'custom_navigation_menus' );
+}
