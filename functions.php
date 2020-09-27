@@ -41,14 +41,23 @@ class jackpine extends Site
     public function add_to_context($context)
     {
         $context['site'] = $this;
+        // set menus
         $context['menu_primary'] = new Menu( 'primary' );
         $context['menu_secondary'] = new Menu( 'secondary' );
         $context['menu_social'] = new Menu( 'social' );
         $context['menu_footer'] = new Menu( 'footer' );
         $context['menu_mobile'] = new Menu( 'mobile' );
+        // set custom logo
         $custom_logo_url = wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' );
         $context['custom_logo_url'] = $custom_logo_url;
+        // set home page
         $context['is_front_page'] = is_front_page();
+        // set widgets
+        $context['footer_area_one'] = Timber::get_widgets('footer_area_one');
+        $context['footer_area_two'] = Timber::get_widgets('footer_area_two');
+        $context['footer_area_three'] = Timber::get_widgets('footer_area_three');
+        $context['footer_area_four'] = Timber::get_widgets('footer_area_four');
+
 
         return $context;
     }
@@ -142,3 +151,58 @@ function custom_navigation_menus() {
     }
 add_action( 'init', 'custom_navigation_menus' );
 }
+
+// Register Sidebar Widgets
+function register_widget_areas() {
+
+    register_sidebar( array(
+      'name'          => 'Footer area one',
+      'id'            => 'footer_area_one',
+      'description'   => 'Footer widgets',
+      'before_widget' => '<section class="footer-area footer-area-one">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4>',
+      'after_title'   => '</h4>',
+    ));
+
+    register_sidebar( array(
+      'name'          => 'Footer area two',
+      'id'            => 'footer_area_two',
+      'description'   => 'Footer widgets',
+      'before_widget' => '<section class="footer-area footer-area-two">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4>',
+      'after_title'   => '</h4>',
+    ));
+
+    register_sidebar( array(
+      'name'          => 'Footer area three',
+      'id'            => 'footer_area_three',
+      'description'   => 'Footer widgets',
+      'before_widget' => '<section class="footer-area footer-area-three">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4>',
+      'after_title'   => '</h4>',
+    ));
+
+    register_sidebar( array(
+      'name'          => 'Footer area four',
+      'id'            => 'footer_area_four',
+      'description'   => 'Footer widgets',
+      'before_widget' => '<section class="footer-area footer-area-three">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h4>',
+      'after_title'   => '</h4>',
+    ));
+
+  }
+
+add_action( 'widgets_init', 'register_widget_areas' );
+
+//Allow shortcodes in widgets
+add_filter ('widget_text', 'do_shortcode');
+function year_shortcode () {
+    $year = date_i18n ('Y');
+    return $year;
+    }
+add_shortcode ('year', 'year_shortcode');
