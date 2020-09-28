@@ -178,13 +178,13 @@
                     </a>
                 </div>
                 {# menu #}
-                <div class="flex bg-gray-300 text-gray-800 lg:text-base xl:font-light xl:text-lg justify-self-start mb-2 space-x-10">
+                <div class="flex bg-gray-300 text-gray-800 lg:text-base xl:font-light xl:text-lg justify-self-start mb-2 space-x-10 lowercase">
                     {% if items|default(menu_primary.items) %}
                         {% for item in items|default(menu_primary.items) %}
                             {% if item.children %}
                                 <div x-data="{ hover: false }" class="relative">
                                     <a id="menu-item-{{ item.id }}" href="{{ item.link }}" class=" hover:text-orange flex items-center" @mouseenter="{hover=true}" @mouseleave="{hover=false}">{{ item.name }}</a>
-                                    <ul id="menu-item-list-{{ item.id }}" class="absolute p-2 bg-white border-gray-400 border-.5 flex flex-col whitespace-no-wrap" x-show="hover" @mouseenter="{hover=true}" @mouseleave="{hover=false}">
+                                    <ul id="menu-item-list-{{ item.id }}" class="absolute p-2 bg-white border-gray-400 border-.5 flex flex-col whitespace-no-wrap z-50" x-show="hover" @mouseenter="{hover=true}" @mouseleave="{hover=false}">
                                         {% for child in item.children %}
                                             <li id="menu-item-child-{{ child.id }}" class="p-2">
                                                 <a href="{{ child.link }}" class="hover:text-orange">{{ child.title }}</a>
