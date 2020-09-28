@@ -22,4 +22,9 @@ module.exports = {
             },
           }
     },
+    variants: {
+        // add group hover to scale icons: https://tailwindcss.com/docs/pseudo-class-variants#group-hover
+        scale: ['responsive', 'hover', 'focus', 'group-hover'],
+
+      },
 };
