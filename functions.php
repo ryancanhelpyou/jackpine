@@ -206,3 +206,54 @@ function year_shortcode () {
     return $year;
     }
 add_shortcode ('year', 'year_shortcode');
+
+// Gutenberg theme color palette
+// back-end display
+function rchy_add_custom_gutenberg_color_palette() {
+	add_theme_support(
+		'editor-color-palette',
+		[
+			[
+				'name'  => esc_html__( 'Navy', 'rchy' ),
+				'slug'  => 'navy',
+				'color' => '#00263e',
+			],
+			[
+				'name'  => esc_html__( 'Sunset Orange', 'rchy' ),
+				'slug'  => 'orange',
+				'color' => '#b15533',
+			],
+			[
+				'name'  => esc_html__( 'Royal Blue', 'rchy' ),
+				'slug'  => 'blue',
+				'color' => '#004b7a',
+            ],
+            [
+				'name'  => esc_html__( 'Gold', 'rchy' ),
+				'slug'  => 'yellow',
+				'color' => '#f7a532',
+			],
+            [
+				'name'  => esc_html__( 'Green', 'rchy' ),
+				'slug'  => 'green',
+				'color' => '#136f63',
+            ],
+            [
+				'name'  => esc_html__( 'Dark Gray', 'rchy' ),
+				'slug'  => 'gray800',
+				'color' => '#3c3c3d',
+            ],
+            [
+				'name'  => esc_html__( 'Medium Gray', 'rchy' ),
+				'slug'  => 'gray400',
+				'color' => '#cfc9c5',
+            ],
+            [
+				'name'  => esc_html__( 'Beige', 'rchy' ),
+				'slug'  => 'gray100',
+				'color' => '#f8f4f1',
+			],
+		]
+	);
+}
+add_action( 'after_setup_theme', 'rchy_add_custom_gutenberg_color_palette' );

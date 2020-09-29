@@ -18,7 +18,11 @@
 
     <main id="main">
 
+        {% if is_front_page %}
+        <div id="content" class="mx-auto w-10/12 lg:w-3/4 pb-12 prose max-w-4xl">
+        {% else %}
         <div id="content" class="mx-auto w-10/12 lg:w-3/4 py-12 prose max-w-4xl">
+        {% endif %}
 
             {% block content %}
                 Sorry, no content

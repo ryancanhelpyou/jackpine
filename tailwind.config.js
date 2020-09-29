@@ -20,7 +20,17 @@ module.exports = {
             borderWidth: {
                 '.5': '0.5px',
             },
-          }
+        },
+        // typography plugin overrides: https://github.com/tailwindlabs/tailwindcss-typography
+        typography: (theme) => ({
+            default: {
+              css: {
+                h1: {
+                    color: theme('colors.navy'),
+                },
+              },
+            },
+        }),
     },
     variants: {
         // add group hover to scale icons: https://tailwindcss.com/docs/pseudo-class-variants#group-hover
