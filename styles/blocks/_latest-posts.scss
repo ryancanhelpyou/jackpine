@@ -1,16 +1,32 @@
 // Styling for the Gutenberg Latest Posts block
 
 .wp-block-latest-posts {
+@apply justify-between my-6;
+}
 
+.wp-block-latest-posts.is-grid li {
+@apply mx-0;
+}
+
+.wp-block-latest-posts__featured-image.aligncenter {
+@apply m-0;
 }
 
 .wp-block-latest-posts__list {
 
     li {
+    @apply rounded-lg overflow-hidden shadow-lg border border-gray-100;
 
         a {
+        @apply text-navy inline-block m-6;
+        }
 
+        a:hover {
+            @apply text-orange;
+        }
 
+        img {
+        @apply w-full m-0;
         }
 
     }

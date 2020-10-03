@@ -1,14 +1,31 @@
 // Styling for the Gutenberg Buttons block
 
 .wp-block-buttons {
-
+    @apply;
 }
 
 .wp-block-button {
-
+    @apply ;
 }
 
 .wp-block-button__link {
+    @apply bg-orange text-gray-100 py-2 px-4 text-base font-thin;
+}
 
+.wp-block-button__link:hover {
+    @apply transition duration-500 ease-in-out transform scale-105;
+}
 
+// inverted buttton style
+
+.wp-block-buttons .is-style-outline {
+    @apply ;
+}
+
+.wp-block-buttons .is-style-outline .wp-block-button__link {
+    @apply bg-white text-orange border border-orange py-2 px-4 text-base font-thin;
+}
+
+.wp-block-buttons .is-style-outline .wp-block-button__link:hover {
+    @apply bg-orange text-gray-100;
 }

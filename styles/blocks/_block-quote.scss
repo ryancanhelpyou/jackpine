@@ -3,6 +3,14 @@
 .wp-block-quote {
 
     p {
+    @apply text-navy;
+    }
+
+}
+
+blockquote .is-style-large {
+
+    p {
 
     }
 

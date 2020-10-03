@@ -1,6 +1,7 @@
 // Styling for the Gutenberg Audio block
 
 .wp-block-audio {
+    @apply my-6;
 
     audio {
 
