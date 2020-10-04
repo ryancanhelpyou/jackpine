@@ -2,11 +2,14 @@
 
 .wp-block-cover {
     @apply p-8;
+    min-height: 0 !important;
 }
+
 
 @screen sm {
     .wp-block-cover {
         @apply py-10 px-16;
+        min-height: 55vh !important;
     }
 }
 .wp-block-cover__inner-container {
