@@ -9,12 +9,12 @@
 @screen sm {
     .wp-block-cover {
         @apply py-10 px-16;
-        min-height: 55vh !important;
+        // min-height: 55vh !important;
     }
 }
-.wp-block-cover__inner-container {
+// .wp-block-cover__inner-container {
 
-}
+// }
 
 @screen sm {
     .wp-block-cover__inner-container {
@@ -23,9 +23,9 @@
 }
 
 // Gutenberg cover positioning
-.has-custom-content-position {
+// .has-custom-content-position {
 
-}
+// }
 
 .is-position-top-left {
     @apply content-start justify-start;

@@ -23,6 +23,10 @@ module.exports = {
             spacing: {
                 '14': '3.5rem',
             },
+            opacity: {
+                '90': '.9',
+                '80': '.85',
+            },
         },
         // typography plugin overrides: https://github.com/tailwindlabs/tailwindcss-typography
         typography: (theme) => ({
