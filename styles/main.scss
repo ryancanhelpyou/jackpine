@@ -1,6 +1,6 @@
 // Import default styling (for clients who won't be using Tailwind)
 @import 'defaults/lists';
-@import 'defaults/typography';
+// @import 'defaults/typography'; moved to bottom
 
 // Import components
 @import 'components/nav';
@@ -37,5 +37,6 @@
 // Import Tailwind.css core
 
 @import 'tailwindcss/base';
+@import 'defaults/typography';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';

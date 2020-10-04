@@ -1,9 +1,13 @@
 // Styling for the Gutenberg Columns block
 
 .wp-block-columns {
-
+@apply my-6;
 }
 
-.wp-block-column {
-
+.wp-block-column a img:hover {
+    @apply transition duration-500 ease-in-out transform scale-105 shadow-lg;
 }
+
+// .wp-block-column a:hover {
+// @apply transition duration-500 ease-in-out transform scale-105 opacity-75;
+// }

@@ -1,23 +1,60 @@
 // Typography defaults
 
-// red for testing -> items not covered by prose typography plugin
 h1, h2, h3, h4, h5, h6 {
-    @apply text-red-600;
+    @apply text-gray-400 font-thin text-xl mb-4 mt-6 ;
+    color: #6F645D;
+}
+
+h1 {
+    @apply text-4xl text-navy font-light mt-0;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-2xl;
 }
 
 b, strong {
-
+    @apply font-bold;
 }
 
 i, em {
-
+    @apply italic;
 }
 
 p {
-
+    @apply text-gray-800 mb-4 text-lg font-light;
+    // color: #433C38;
 }
 
-.prose figure
- {
-     margin-top: 0 !important;
- }
+// only apply to content area
+main {
+    ol {
+        @apply list-decimal list-inside mb-6;
+    }
+
+    ul {
+        @apply mb-6;
+    }
+
+    ul li::before {
+        content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+        color: #6F645D; /* Change the color */
+        display: inline-block; /* Needed to add space between the bullet and the text */
+        width: .8em; /* Also needed for space (tweak if needed) */
+      }
+
+    li {
+        @apply text-gray-800 mb-2 text-lg font-light;
+    }
+}
+
+main a, footer a {
+    color: #b15533;
+    &:hover {
+        text-decoration: underline;
+    }
+}

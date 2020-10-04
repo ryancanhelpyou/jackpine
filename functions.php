@@ -87,9 +87,9 @@ class jackpine extends Site
         add_theme_support('custom-background');
         add_theme_support('customize-selective-refresh-widgets');
         // Gutenberg support
+        add_theme_support( 'editor-styles' );
         add_theme_support( 'wp-block-styles' );
         add_theme_support('align-wide');
-        add_theme_support( 'editor-styles' );
         add_theme_support( 'responsive-embeds' );
         add_theme_support('experimental-custom-spacing');
         add_theme_support('experimental-link-color');
@@ -256,7 +256,7 @@ function rchy_add_custom_gutenberg_color_palette() {
             ],
             [
 				'name'  => esc_html__( 'Beige', 'rchy' ),
-				'slug'  => 'gray100',
+				'slug'  => 'beige',
 				'color' => '#f8f4f1',
 			],
 		]

@@ -1,9 +1,53 @@
 // Styling for the Gutenberg Cover block
 
 .wp-block-cover {
+    @apply p-8;
+}
+
+@screen sm {
+    .wp-block-cover {
+        @apply py-10 px-16;
+    }
+}
+.wp-block-cover__inner-container {
+ 
+}
+
+@screen sm {
+    .wp-block-cover__inner-container {
+        @apply w-full;
+    }
+}
+
+// Gutenberg cover positioning
+.has-custom-content-position {
 
 }
 
-.wp-block-cover__inner-container {
-
+.is-position-top-left {
+    @apply content-start justify-start;
+}
+.is-position-top-center {
+    @apply content-start justify-center;
+}
+.is-position-top-right {
+    @apply content-start justify-end;
+}
+.is-position-center-left {
+    @apply content-center justify-start;
+}
+.is-position-center-center {
+    @apply content-center justify-between;
+}
+.is-position-center-right{
+    @apply content-center justify-end;
+}
+.is-position-bottom-left {
+    @apply content-end justify-start;
+}
+.is-position-bottom-center {
+    @apply content-end justify-center;
+}
+.is-position-bottom-right {
+    @apply content-end justify-end;
 }

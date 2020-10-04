@@ -1,7 +1,7 @@
 module.exports = {
     purge: ["./templates/**/*.twig"],
     plugins: [
-        require('@tailwindcss/typography')
+        // require('@tailwindcss/typography')
     ],
     theme: {
         extend: {
