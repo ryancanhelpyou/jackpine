@@ -38,8 +38,13 @@ p {
     // color: #433C38;
 }
 
+body {
+    @apply bg-gray-400;
+}
+
 // only apply to content area
 main {
+    @apply bg-white;
     ol {
         @apply list-decimal list-inside mb-6;
     }
@@ -56,7 +61,7 @@ main {
       }
 
     li {
-        @apply text-gray-800 mb-3 text-lg font-light;
+        @apply text-gray-800 mb-2 text-lg font-light;
     }
 
     @screen sm {

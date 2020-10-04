@@ -14,15 +14,23 @@
 
 .wp-block-latest-posts__list {
 
+    li:before {
+        content: none ;
+    }
+
     li {
-    @apply rounded-lg overflow-hidden shadow-lg border border-gray-100;
+    @apply rounded-lg overflow-hidden shadow-lg border border-gray-100 list-none;
 
         a {
-        @apply text-navy inline-block m-6;
+        @apply inline-block mx-6 mt-4 mb-2 font-medium;
         }
 
         a:hover {
             @apply text-orange;
+        }
+
+        time {
+            @apply mx-6 mb-4;
         }
 
         img {
