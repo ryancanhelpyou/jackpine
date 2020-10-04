@@ -20,6 +20,9 @@ module.exports = {
             borderWidth: {
                 '.5': '0.5px',
             },
+            spacing: {
+                '14': '3.5rem',
+            },
         },
         // typography plugin overrides: https://github.com/tailwindlabs/tailwindcss-typography
         typography: (theme) => ({
