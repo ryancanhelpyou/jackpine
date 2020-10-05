@@ -1,0 +1,51 @@
+
+.blog #content {
+    @apply grid grid-cols-1;
+    @screen sm
+    {
+        @apply grid-cols-2 gap-8;
+        nav {
+            @apply col-span-2;
+        }
+    }
+    @screen xl
+    {
+        @apply grid-cols-3 gap-8;
+        nav {
+            @apply col-span-3;
+        }
+    }
+    article {
+        @apply rounded-lg shadow-lg border border-gray-100 flex flex-col pb-6 my-6;
+        img {
+            @apply order-first rounded-t-lg;
+        }
+        h2,p,time {
+            @apply mx-4;
+        }
+        h2 {
+            @apply text-2xl mb-4;
+        }
+        time {
+            @apply text-sm order-last;
+            color: #6c7781;
+        }
+    }
+    ul li::before {
+        content: none;
+    }
+    li {
+        @apply my-0 py-2 px-4;
+    }
+    li:hover {
+        @apply bg-gray-400;
+    }
+    li.current:hover {
+        @apply bg-orange;
+    }
+    svg {
+        @apply inline-block;
+    }
+}
+
+

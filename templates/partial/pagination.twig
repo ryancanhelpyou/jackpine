@@ -1,9 +1,9 @@
 {% if posts.pagination.pages is not empty %}
-    <nav class="pagination-block">
-        <ul class="pagination">
+    <nav class="pagination-block mx-auto">
+        <ul class="pagination inline-flex border border-gray-400 rounded-md divide-x divide-gray-400 bg-gray-100 items-center">
 
             {# First #}
-            {% if posts.pagination.pages|first and posts.pagination.pages|first.current != true %}
+            {# {% if posts.pagination.pages|first and posts.pagination.pages|first.current != true %}
                 <li class="first btn">
                     <a href="{{ posts.pagination.pages|first.link }}">First</a>
                 </li>
@@ -11,17 +11,22 @@
                 <li class="first btn disabled">
                     <button disabled>First</button>
                 </li>
-            {% endif %}
+            {% endif %} #}
 
             {# Previous #}
             {% if posts.pagination.prev %}
                 <li class="prev btn">
-                    <a href="{{ posts.pagination.prev.link }}">Previous</a>
+                    <a href="{{ posts.pagination.prev.link }}" aria-label="Previous">
+                        <!-- Heroicon name: chevron-left -->
+                        <svg class="h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
                 </li>
             {% else %}
-                <li class="prev btn disabled">
-                    <button disabled>Previous</button>
-                </li>
+                {# <li class="prev btn disabled">
+                    <button disabled class="cursor-auto">Previous</button>
+                </li> #}
             {% endif %}
 
             {# Pages #}
@@ -31,7 +36,7 @@
                         <a href="{{ page.link }}" class="{{ page.class }}">{{ page.title }}</a>
                     </li>
                 {% else %}
-                    <li class="current">
+                    <li class="current bg-orange text-gray-100">
                         <span class="{{ page.class }}">{{ page.title }}</span>
                     </li>
                 {% endif %}
@@ -40,16 +45,21 @@
             {# Next #}
             {% if posts.pagination.next %}
                 <li class="next btn">
-                    <a href="{{ posts.pagination.next.link }}">Next</a>
+                    <a href="{{ posts.pagination.next.link }}" aria-label="Next">
+                        <!-- Heroicon name: chevron-right -->
+                        <svg class="h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
                 </li>
             {% else %}
-                <li class="next btn disabled">
-                    <button disabled>Next</button>
-                </li>
+                {# <li class="next btn disabled">
+                    <button disabled class="cursor-auto">Next</button>
+                </li> #}
             {% endif %}
 
             {# Last #}
-            {% if posts.pagination.pages|last and posts.pagination.pages|last.current != true %}
+            {# {% if posts.pagination.pages|last and posts.pagination.pages|last.current != true %}
                 <li class="last btn">
                     <a href="{{ posts.pagination.pages|last.link }}">Last</a>
                 </li>
@@ -57,7 +67,7 @@
                 <li class="last btn disabled">
                     <button disabled>Last</button>
                 </li>
-            {% endif %}
+            {% endif %} #}
 
         </ul>
     </nav>
