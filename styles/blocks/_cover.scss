@@ -5,6 +5,10 @@
     min-height: 0 !important;
 }
 
+// .wp-block-cover__inner-container {
+//     @apply ;
+// }
+
 @screen md {
     .wp-block-cover {
         @apply py-10 px-16;
@@ -23,6 +27,13 @@
     }
     p {
         @apply hidden;
+    }
+    .wp-block-buttons a:hover{
+        @apply no-underline;
+    }
+    .has-beige-background-color {
+        background-color: rgba(248, 244, 241, 0.75);
+        @apply rounded-sm;
     }
 }
 
