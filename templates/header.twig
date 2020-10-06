@@ -1,7 +1,7 @@
-<header id="header" class="bg-gray-100 md:bg-white border-t-4 border-b-.5 border-gray-400">
+<header id="header" class="bg-gray-100 lg:bg-white border-t-4 border-b-.5 border-gray-400">
     <nav id="nav-main" class="nav-main" role="navigation" x-data="{ isOpen: false }">
         {# mobile #}
-        <div class="sm:hidden flex flex-row items-center justify-between py-2 w-11/12 mx-auto space-x-2">
+        <div class="lg:hidden flex flex-row items-center justify-between py-2 w-11/12 mx-auto space-x-2">
             <div class="w-14 mr-2 transition duration-500 ease-in-out transform hover:scale-110">
                 <a href="{{ site.url|e('esc_url') }}" title="home" rel="home">
                     <img alt="logo" src="{{ site.icon }}" />
@@ -42,7 +42,7 @@
         {% include 'header-expanded.twig' %}
 
         {# desktop #}
-        <div class="hidden sm:flex flex-col w-11/12 mx-auto">
+        <div class="hidden lg:flex flex-col w-11/12 mx-auto">
             {# secondary nav #}
 	        <div class="flex justify-end">
               <div class="bg-gray-400 bg-opacity-25 items-center font-light md:text-sm xl:text-base rounded-b-lg space-x-8 px-6">

@@ -1,9 +1,16 @@
-{# <div x-cloak x-show.transition.duration.500ms.origin.top="open" @click.away="open = false" @keydown.escape.window="open = false" class="fixed inset-0 w-full h-full bg-gray-100 z-20 border-t-4 border-b-8 border-gray-400"> #}
 <div x-cloak x-show.transition.duration.200ms.origin.top="isOpen" @click.away="open = false" @keydown.escape.window="open = false" class="z-50">
 
-    <div class="hidden absolute top-0 left-0 bg-gray-100 border-t-4 border-b-8 border-gray-400 z-40 flex flex-col shadow-2xl"
+    {# modal backdrop #}
+    <div
+    class="hidden z-30 fixed inset-0 bg-black opacity-80"
+    @click="isOpen = !isOpen"
+    :class="{ 'block' : isOpen , 'hidden' : !isOpen }">
+    ></div>
+
+    <div class="hidden absolute top-0 w-full bg-gray-100 border-t-4 border-b-8 border-gray-400 z-40 flex flex-col shadow-2xl"
     :class="{ 'block' : isOpen , 'hidden' : !isOpen }">
 
+        {# logo #}
         <div class="flex flex-row w-10/12 mx-auto items-end mt-6">
             <div class="flex-1">
                 <a href="{{ site.url|e('esc_url') }}" title="Home" rel="home">
@@ -26,6 +33,7 @@
             </div>
         </div>
 
+        {# buttons #}
         <div class="w-10/12 mx-auto mt-8 object-center">
             <a href="/schedule-online/">
             <button class="bg-orange text-gray-100 font-light py-2 px-4 rounded-full inline-flex items-center w-full mb-3 transition duration-500 ease-in-out transform hover:scale-105">
@@ -54,27 +62,33 @@
             </a>
         </div>
 
-        <ul class="mobile-primary-nav text-gray-800">
+        {# menu #}
+        <ul class="mt-8 text-gray-800 lowercase divide-gray-400 divide-y-.5 border-gray-400 border-t-.5 border-b-.5">
                 {% if items|default(menu_primary.items) %}
                 {% for item in items|default(menu_primary.items) %}
                     {% if item.children %}
-                        <li>
-                            <a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="">{{ item.name }}</a>
-                            <ul id="menu-item-list-{{ item.id }}" class="hidden absolute ml-4 p-2 bg-white border-gray-400 border-.5 flex flex-col whitespace-no-wrap" >
+                        <li x-data="{ isOpen: false }">
+                            <a id="menu-item-{{ item.id }}"
+                            class="block px-10 sm:px-14 md:px-20 py-4 cursor-pointer bg-white hover:opacity-75"
+                            @click="isOpen = !isOpen">
+                                {{ item.name }}
+                            </a>
+                            <ul id="menu-item-list-{{ item.id }}" class="bg-gray-100 flex flex-col divide-y-.5 divide-orange" x-show.transition.duration.200ms.origin.top="isOpen">
                                 {% for child in item.children %}
-                                    <li id="menu-item-child-{{ child.id }}" class="p-2">
-                                        <a href="{{ child.link }}" class="hover:text-orange">{{ child.title }}</a>
+                                    <li id="menu-item-child-{{ child.id }}">
+                                        <a href="{{ child.link }}" class="block pl-14 md:pl-24  pr-4 py-3 text-orange hover:opacity-75">{{ child.title }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
                         </li>
                     {%  else %}
-                        <li><a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="">{{ item.name }}</a></li>
+                        <li><a id="menu-item-{{ item.id }}" href="{{ item.link }}" class="block px-10 sm:px-14 md:px-20 py-4 bg-white hover:opacity-75">{{ item.name }}</a></li>
                     {% endif %}
                 {% endfor %}
             {% endif %}
         </ul>
 
+        {# footer #}
         <div class="w-10/12 mx-auto mt-10">
             <input class="appearance-none border rounded-full w-full py-2 px-4 text-gray-400 leading-tight focus:outline-none focus:shadow-outline" id="search" type="text" placeholder="search">
 
@@ -89,21 +103,18 @@
                     </a>
                 </div>
                 <div>
+                    <a href="https://www.facebook.com/northwestaudiology/">
                     <button type="button" class="rounded-full text-orange border-.5 border-orange inline-flex p-2 mr-2 transition duration-500 ease-in-out transform hover:scale-110">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-orange w-6 h-6"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
                     </button>
+                    </a>
+                    <a href="https://www.instagram.com/northwestaudiology/">
                     <button type="button" class="rounded-full text-orange border-.5 border-orange inline-flex p-2 transition duration-500 ease-in-out transform hover:scale-110">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-orange w-6 h-6"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-
-    {# modal backdrop #}
-    <div
-    class="hidden z-30 fixed inset-0 bg-black opacity-80"
-    @click="isOpen = !isOpen"
-    :class="{ 'block' : isOpen , 'hidden' : !isOpen }">
-    ></div>
 </div>
