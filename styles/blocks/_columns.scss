@@ -11,3 +11,41 @@
 // .wp-block-column a:hover {
 // @apply transition duration-500 ease-in-out transform scale-105 opacity-75;
 // }
+
+// .alignfull.nomargin {
+//     @apply text-base;
+// }
+
+.wp-block-columns.has-background.nomargin, .nomargin {
+    @apply my-0 p-0 ;
+    .wp-block-image, .wp-block-column:not(:first-child) {
+        @apply m-0 justify-center items-center flex flex-col;
+    }
+    .wp-block-column h2, .wp-block-column p {
+        @apply m-0 p-6 text-gray-100;
+    }
+    .wp-block-column h2 {
+        @apply text-base pb-2;
+    }
+    .wp-block-column p {
+        @apply pt-0 text-sm;
+    }
+    @screen sm {
+        .wp-block-column h2 {
+            @apply text-lg;
+        }
+    }
+    @screen md {
+        .wp-block-column h2 {
+            @apply text-xl;
+        }
+    }
+    @screen xl {
+        .wp-block-column h2 {
+            @apply text-2xl;
+        }
+        .wp-block-column p {
+            @apply text-base;
+        }
+    }
+}
